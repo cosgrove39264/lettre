@@ -66,16 +66,16 @@ impl StdError for Error {
                 None => "undetailed permanent error during SMTP transaction",
             },
             ResponseParsing(err) => err,
-            ChallengeParsing(ref err) => err.description(),
-            Utf8Parsing(ref err) => err.description(),
+            ChallengeParsing(ref err) => format!("{}",err),
+            Utf8Parsing(ref err) => format!("{}",err),
             Resolution => "could not resolve hostname",
             Client(err) => err,
-            Io(ref err) => err.description(),
+            Io(ref err) => format!("{}",err),
             #[cfg(feature = "native-tls")]
-            Tls(ref err) => err.description(),
+            Tls(ref err) => format!("{}",err),
             Parsing(ref err) => err.description(),
             #[cfg(feature = "rustls-tls")]
-            InvalidDNSName(ref err) => err.description(),
+            InvalidDNSName(ref err) => format!("{}",err),
         }
     }
 
